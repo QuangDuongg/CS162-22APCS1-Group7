@@ -1,0 +1,25 @@
+﻿  Course.cpp
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,10): error C3646: 's': unknown override specifier
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,11): error C2143: syntax error: missing ',' before '['
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(11,24): error C2238: unexpected token(s) preceding ';'
+  Function.cpp
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,10): error C3646: 's': unknown override specifier
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,11): error C2143: syntax error: missing ',' before '['
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(11,24): error C2238: unexpected token(s) preceding ';'
+  main.cpp
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,10): error C3646: 's': unknown override specifier
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,11): error C2143: syntax error: missing ',' before '['
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(11,24): error C2238: unexpected token(s) preceding ';'
+  Semester.cpp
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,10): error C3646: 's': unknown override specifier
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,11): error C2143: syntax error: missing ',' before '['
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(11,24): error C2238: unexpected token(s) preceding ';'
+  Student.cpp
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,10): error C3646: 's': unknown override specifier
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,11): error C2143: syntax error: missing ',' before '['
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(11,24): error C2238: unexpected token(s) preceding ';'
+  Year.cpp
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,10): error C3646: 's': unknown override specifier
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(10,11): error C2143: syntax error: missing ',' before '['
+C:\Users\Admin\Documents\GitHub\CS162-22APCS1-Group7\Project\Project\Course.h(11,24): error C2238: unexpected token(s) preceding ';'
+  Generating Code...
