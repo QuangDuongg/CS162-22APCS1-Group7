@@ -7,7 +7,7 @@
 struct Scoreboard
 {
 	// 60 student - course 
-	Student s[60];
+	Student s[60]
 	char fullname[200][60];
 	float totalmark[60];
 	float finalmark[60];

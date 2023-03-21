@@ -129,6 +129,12 @@
   <ItemGroup>
     <ClCompile Include="nhap.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Password.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Password.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

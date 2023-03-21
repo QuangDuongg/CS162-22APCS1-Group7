@@ -19,7 +19,7 @@ int main()
 {
     int choice = -1;
     ifstream inp;
-    inp.open("Password.csv");
+    inp.open("Password.txt");
     password pass[200];
     int size;
     inputPassword(pass, inp, size);
@@ -59,7 +59,7 @@ int main()
                     {
                         int tmp;
                         viewinformation(pass, index);
-                        cout << "Enter 0 to back";
+                        cout << "\nEnter 0 to back";
                         cin >> tmp;
                         if (tmp == 0)break;
 
@@ -113,7 +113,7 @@ void login(password* pass, int size, int & index)
                 {
                     index = i;
                     cout << "Successfully login" << endl;
-                    main();
+                    return;
                 }
                 else
                 {
@@ -140,14 +140,15 @@ void changepassword(password* pass, int index)
     string password, newpass;
     while (true)
     {
-        cout << "Enter the current password";
+        cout << "Enter the current password: ";
+        cin.ignore();
         getline(cin, password, '\n');
         if (password == pass[index].password)
         {
-            cout << "Enter the new password";
+            cout << "Enter the new password: ";
             getline(cin, newpass, '\n');
             pass[index].password = newpass;
-            cout << "Change password successfully";
+            cout << "Change password successfully" << endl;
             return;
         }
         else
