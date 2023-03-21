@@ -13,9 +13,9 @@ struct Date
 struct Student
 {
 	int No;
-	int	ID;
-	char Firstname[50];
-	char Lastname [50];
+	string ID;
+	string Firstname;
+	string Lastname;
 	bool gender;	// 1: male, 0: female
 	Date birth;
 	unsigned long SocialID;
