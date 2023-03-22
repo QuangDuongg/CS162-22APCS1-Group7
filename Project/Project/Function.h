@@ -6,4 +6,5 @@
 #include "Course.h"
 #include "Semester.h"
 #include "Function.h"
+#include <string>
 using namespace std;

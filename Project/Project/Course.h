@@ -7,7 +7,7 @@
 struct Scoreboard
 {
 	// 60 student - course 
-	Student s[60]
+	Student s[60];
 	char fullname[200][60];
 	float totalmark[60];
 	float finalmark[60];
@@ -16,12 +16,15 @@ struct Scoreboard
 };
 struct Course
 {
-	int id;
-	char name[100];
-	char teachername[100];
+	string id;
+	string name;
+	string classname;
+	string teachername;
 	int numofcredit;
 	int maxStudent = 50; //by default
-	char dayofweek[5];
-	char section[5];
+	string dayofweek;
+	string session;
+	Course* next;
 
 };
+void AddACourseToSemester(Semester& s);
