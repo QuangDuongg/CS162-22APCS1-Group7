@@ -21,7 +21,6 @@ int main(){
 //ChangePassword
     if (choice == 3){
         outp.open("Password.csv");
-        cout << outp.is_open();
         CheckAndCreat(pass, size, username, outp);
         outp.close();
     }
