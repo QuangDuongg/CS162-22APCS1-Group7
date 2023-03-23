@@ -8,6 +8,7 @@
 #include "Course.h"
 #include "Semester.h"
 #include "Function.h"
+#include "Class.h"
 #include <string>
 #include "Password.h"
 #include "FunctionChangePassword.h"

@@ -4,10 +4,10 @@
 #include "Course.h"
 #include "Semester.h"
 #include "Function.h"
-#include "Class.h";
+#include "Class.h"
 
-struct SchoolYear {
-	string schoolyear; // 2022-2023
-	Class* classhead;
-	Semester* semesterhead;
+struct Class {
+	string classname;
+	Student* stuhead;
+	Class* classnext;
 };

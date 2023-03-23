@@ -4,10 +4,11 @@
 #include "Course.h"
 #include "Semester.h"
 #include "Function.h"
+#include "Class.h"
 struct Semester
 {
-	Semester* next;
-	string schoolyear;
+	string semes; // Fall, Spring, Summer
+	Semester* semesternext;
 	int index_semester;
 	Date start;
 	Date end;

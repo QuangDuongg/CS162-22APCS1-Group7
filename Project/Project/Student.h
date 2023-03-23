@@ -4,6 +4,7 @@
 #include "Course.h"
 #include "Semester.h"
 #include "Function.h"
+#include "Class.h"
 struct Date
 {
 	int day;
@@ -19,4 +20,5 @@ struct Student
 	bool gender;	// 1: male, 0: female
 	Date birth;
 	unsigned long SocialID;
+	Student* stunext;
 };

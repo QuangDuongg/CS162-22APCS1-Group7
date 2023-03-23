@@ -135,6 +135,7 @@
     <ClCompile Include="Year.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Class.h" />
     <ClInclude Include="Course.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Semester.h" />
