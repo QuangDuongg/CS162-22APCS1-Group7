@@ -1,35 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-using namespace std;
-
-struct password{
-    string type;
-    string name;
-    string ID;
-    string password;
-};
-
-void inputPassword(password* pass, istream& inPass, int& size);
-void login(password* pass, int size);
-
-int main() {
-    int choice;
-    cout << "MENU" << endl;
-    cout << "Press 1 to login." << endl;
-    cin >> choice;
-
-    ifstream inp;
-    inp.open("Password.csv");
-    password pass[200];
-    int size;
-    inputPassword(pass, inp, size);
-    if (choice==1)
-        login(pass, size);
-    inp.close();
-    return 0;
-}
+#include "FunctionLogin.h"
 
 void inputPassword(password* pass, istream& inPass, int& size)
 {
@@ -65,19 +34,19 @@ void login(password* pass, int size)
             if (pass[i].password==userpass)
             {
                 cout << "Successfully login" << endl;
-                main();
+                return;
             }
             else
             {
                 cout << "Wrong password, try again" << endl;
-                main();
+                return;
             }
         }
     }
     if (existID==0)
     {
         cout << "This username does not exist" << endl;
-        main();
+        return;
     }
 }
 
