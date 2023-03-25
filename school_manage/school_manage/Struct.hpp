@@ -21,7 +21,7 @@ struct Teacher{
     string teaname;
     bool gender; //1 male, 0 fem
     Date teabirth;
-    unsigned teapID; //so CMND
+    unsigned  teapID; //so CMND
 };
 
 struct Student{
