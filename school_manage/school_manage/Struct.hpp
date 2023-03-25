@@ -1,9 +1,4 @@
-//
-//  Struct.hpp
-//  
-//
-//  Created by Nguyễn Bạch Trường Giang on 24/03/2023.
-//
+
 
 #ifndef Struct_hpp
 #define Struct_hpp
@@ -64,7 +59,7 @@ struct Semester{
     int semindex;
     Date start;
     Date end;
-    Coure* couhead = nullptr;
+    Course* couhead = nullptr;
 };
 
 struct schoolyear{
