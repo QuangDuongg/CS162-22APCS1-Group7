@@ -15,5 +15,5 @@ int stu1menu();//menu sau login
 int staff1menu();//menu sau login
 int menuSchoolYear();
 int menuCreateSY();
-int menuViewSY();
+int menuViewSY(string*& filename);
 #endif /* menu_hpp */
