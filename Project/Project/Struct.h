@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-//Struct for Class
 struct Class {
 	string classname;
 	Student* stuhead;
@@ -11,12 +10,10 @@ struct Class {
 struct Scoreboard
 {
 	// 60 student - course 
-	Student s[60];
-	char fullname[200][60]; //!
-	float totalmark[60];
-	float finalmark[60];
-	float othermark[60];
-	float midtermmark[60];
+	float totalmark;
+	float finalmark;
+	float othermark;
+	float midtermmark;
 };
 //Struct for Course
 struct Course
@@ -33,7 +30,7 @@ struct Course
 
 };
 //Struct for Password
-struct Password{
+struct password{
     string type;
     string name;
     string ID;
