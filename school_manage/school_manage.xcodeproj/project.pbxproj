@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		627F314329D09E2B00C92426 /* Class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 627F314129D09E2B00C92426 /* Class.cpp */; };
+		627F314629D09F4A00C92426 /* Semester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 627F314429D09F4A00C92426 /* Semester.cpp */; };
 		62879E4929CE991E009461AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62879E4829CE991E009461AC /* main.cpp */; };
 		62879E5329CE99F3009461AC /* Password.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62879E5129CE99F3009461AC /* Password.cpp */; };
 /* End PBXBuildFile section */
@@ -24,6 +26,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		627F314129D09E2B00C92426 /* Class.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Class.cpp; sourceTree = "<group>"; };
+		627F314229D09E2B00C92426 /* Class.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Class.hpp; sourceTree = "<group>"; };
+		627F314429D09F4A00C92426 /* Semester.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Semester.cpp; sourceTree = "<group>"; };
+		627F314529D09F4A00C92426 /* Semester.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Semester.hpp; sourceTree = "<group>"; };
+		627F314A29D0A17800C92426 /* 22CTT2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 22CTT2.csv; sourceTree = "<group>"; };
+		627F314B29D0A17800C92426 /* 22CTT1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 22CTT1.csv; sourceTree = "<group>"; };
+		627F314C29D0C24E00C92426 /* schoolyear.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schoolyear.txt; sourceTree = "<group>"; };
+		627F314D29D0D48A00C92426 /* semester.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = semester.txt; sourceTree = "<group>"; };
 		62879E4529CE991E009461AC /* school_manage */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = school_manage; sourceTree = BUILT_PRODUCTS_DIR; };
 		62879E4829CE991E009461AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		62879E4F29CE994A009461AC /* Struct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Struct.hpp; sourceTree = "<group>"; };
@@ -67,6 +77,14 @@
 				62879E4F29CE994A009461AC /* Struct.hpp */,
 				62879E5229CE99F3009461AC /* Function.hpp */,
 				62879E5129CE99F3009461AC /* Password.cpp */,
+				627F314229D09E2B00C92426 /* Class.hpp */,
+				627F314129D09E2B00C92426 /* Class.cpp */,
+				627F314529D09F4A00C92426 /* Semester.hpp */,
+				627F314429D09F4A00C92426 /* Semester.cpp */,
+				627F314C29D0C24E00C92426 /* schoolyear.txt */,
+				627F314D29D0D48A00C92426 /* semester.txt */,
+				627F314B29D0A17800C92426 /* 22CTT1.csv */,
+				627F314A29D0A17800C92426 /* 22CTT2.csv */,
 			);
 			path = school_manage;
 			sourceTree = "<group>";
@@ -129,6 +147,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				62879E4929CE991E009461AC /* main.cpp in Sources */,
+				627F314629D09F4A00C92426 /* Semester.cpp in Sources */,
+				627F314329D09E2B00C92426 /* Class.cpp in Sources */,
 				62879E5329CE99F3009461AC /* Password.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

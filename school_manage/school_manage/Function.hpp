@@ -11,7 +11,8 @@
 #include <stdio.h>
 #include "Struct.hpp"
 
-void inputPassword(Password* pass, istream& inPass, int& size);
-void login(Password* pass, int size);
+//void inputPassword(Password* pass, istream& inPass, int& size);
+//void login(Password* pass, int size);
+
 
 #endif /* Function_hpp */
