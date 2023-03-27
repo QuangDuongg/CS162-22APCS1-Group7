@@ -10,3 +10,5 @@ struct password{
     string ID;
     string password;
 };
+void inputPassword(password* pass, istream& inPass, int& size);
+void login(password* pass, int size);
