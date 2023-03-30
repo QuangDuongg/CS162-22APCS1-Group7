@@ -10,8 +10,8 @@
 
 #include <stdio.h>
 #include "Struct.hpp"
-
-void createClass(schoolyear& sy);
-void saveClassToFile(schoolyear sy, ostream& fout);
+bool existClass(schoolyear* sy, string classname);
+void createClass(schoolyear*& sy);
+void saveClassToFile(schoolyear* sy);
 void readOldClassFile(schoolyear*& sy, istream& oldsy);
 #endif /* Class_hpp */

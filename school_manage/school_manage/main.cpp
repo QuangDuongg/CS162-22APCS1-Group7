@@ -6,7 +6,7 @@ int main() {
 //    createClass(sy);
     schoolyear* sy=0;
     ifstream inp;
-    inp.open("schoolyear.txt");
+    inp.open("data/schoolyear/schoolyear.txt");
     
     sy = new schoolyear;
     schoolyear* curyear = sy;
@@ -31,6 +31,7 @@ int main() {
     if (curyear->next->next!=nullptr)
     { while (curyear->next->next)
         curyear = curyear->next;}
+    cout << curyear->scyear << endl;
     createSemester(curyear);
     inp.close();
 //    readOldClassFile(sy, inp);

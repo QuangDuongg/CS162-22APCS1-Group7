@@ -12,7 +12,7 @@
 
 void createSemester(schoolyear*& sy){
     fstream semester;
-    semester.open("semester.txt",ios::in);
+    semester.open("data/schoolyear/semester.txt",ios::in);
     
     string currentyear = sy->scyear;
     string yearline = "";
@@ -25,6 +25,9 @@ void createSemester(schoolyear*& sy){
         tmpyear = "";
         stringstream findyear(yearline);
         getline(findyear, tmpyear, ',');
+        cout << "Start: ";
+        cout << yearline << " ";
+        cout << tmpyear << endl;
         if (tmpyear==currentyear)
         {
             check=1;
@@ -32,6 +35,7 @@ void createSemester(schoolyear*& sy){
         }
         else yearline = "";
     }
+    cout << check << endl;
     if (check==1)
     {
         stringstream findyear(yearline);
@@ -44,7 +48,7 @@ void createSemester(schoolyear*& sy){
         getline(findyear,index , ',');
         int semno = stoi(index);
         cursem->semindex = semno;
-        
+        cout << cursem ->semindex << endl;
         string sday, smonth, syear;
         getline(findyear,sday,'/');
         getline(findyear, smonth, '/');
@@ -111,58 +115,67 @@ void createSemester(schoolyear*& sy){
     }
     
     semester.close();
-    semester.open("semester.txt",ios::out|ios::app);
-    
-    if (nowsem->semindex==3) cout << "You have reached semester 3. Please create a new school year before create a new semester.\n";
-    else{
-        
-        int index=1;
-        if (!nowsem) index=1;
-        else index = nowsem->semindex+1;
-        cout << "You are creating semester " << nowsem->semindex+1 << "." << endl;
-        nowsem->semnext = new Semester;
-        nowsem = nowsem->semnext;
-        nowsem->semnext = nullptr;
-        cout << "The new semester is in school year ";
-        nowsem->schyear = sy->scyear;
-        cout << nowsem->schyear << endl;
-        semester << nowsem->schyear << ',';
-        nowsem->semindex = index;
-        cout << "The new semester is semester " << nowsem->semindex << endl;
-        semester << nowsem->semindex << ',';
-        cout << "The start date of this semester is (dd/mm/yyyy): ";
-        string start ="";
-        getline(cin, start, '\n');
-        
-        string sday, smonth, syear;
-        stringstream startdate(start);
-        getline(startdate, sday, '/');
-        getline(startdate, smonth, '/');
-        getline(startdate, syear,'\n');
-        
-        nowsem->start.day = stoi(sday);
-        nowsem->start.month = stoi(smonth);
-        nowsem->start.year = stoi(syear);
-        
-        semester << nowsem->start.day << '/' << nowsem->start.month << '/' << nowsem->start.year << ',';
-        
-        cout << "The end date of this semester is (dd/mm/yyyy): ";
-        string end ="";
-        getline(cin, end,'\n');
-        
-        string eday, emonth, eyear;
-        stringstream enddate(end);
-        getline(enddate, eday, '/');
-        getline(enddate, emonth, '/');
-        getline(enddate, eyear);
-        
-        int enday = stoi(eday), enmonth = stoi(emonth), enyear = stoi(eyear);
-        nowsem->end.day = enday;
-        nowsem->end.month = enmonth;
-        nowsem->end.year = enyear;
-        
-        semester << nowsem->end.day << '/' << nowsem->end.month << '/' << nowsem->end.year << '\r';
-    }
+    semester.open("data/schoolyear/semester.txt",ios::out|ios::app);
+    if (semester.is_open()){
+        if (nowsem->semindex==3) cout << "You have reached semester 3. Please create a new school year before create a new semester.\n";
+        else{
+            
+            int index=1;
+            if (!nowsem) index=1;
+            else index = nowsem->semindex+1;
+            cout << "You are creating semester " << nowsem->semindex+1 << "." << endl;
+            nowsem->semnext = new Semester;
+            nowsem = nowsem->semnext;
+            nowsem->semnext = nullptr;
+            cout << "The new semester is in school year ";
+            nowsem->schyear = sy->scyear;
+            cout << nowsem->schyear << endl;
+            semester << nowsem->schyear << ',';
+            nowsem->semindex = index;
+            
+//            string address = "data/schoolyear/" + nowsem->schyear + "/" + to_string(nowsem->semindex);
+//                cout << address << '\n';
+//                if(mkdir(address.c_str()) == -1)
+//                    cerr << "Error : " << strerror(errno) << '\n';
+//                else
+//                    cout << "......  Created!" << '\n';
+
+            cout << "The new semester is semester " << nowsem->semindex << endl;
+            semester << nowsem->semindex << ',';
+            cout << "The start date of this semester is (dd/mm/yyyy): ";
+            string start ="";
+            getline(cin, start, '\n');
+            
+            string sday, smonth, syear;
+            stringstream startdate(start);
+            getline(startdate, sday, '/');
+            getline(startdate, smonth, '/');
+            getline(startdate, syear,'\n');
+            
+            nowsem->start.day = stoi(sday);
+            nowsem->start.month = stoi(smonth);
+            nowsem->start.year = stoi(syear);
+            
+            semester << nowsem->start.day << '/' << nowsem->start.month << '/' << nowsem->start.year << ',';
+            
+            cout << "The end date of this semester is (dd/mm/yyyy): ";
+            string end ="";
+            getline(cin, end,'\n');
+            
+            string eday, emonth, eyear;
+            stringstream enddate(end);
+            getline(enddate, eday, '/');
+            getline(enddate, emonth, '/');
+            getline(enddate, eyear);
+            
+            int enday = stoi(eday), enmonth = stoi(emonth), enyear = stoi(eyear);
+            nowsem->end.day = enday;
+            nowsem->end.month = enmonth;
+            nowsem->end.year = enyear;
+            
+            semester << nowsem->end.day << '/' << nowsem->end.month << '/' << nowsem->end.year << "\n";
+        }}
+    else cout << "error" << endl;
     semester.close();
 }
 
