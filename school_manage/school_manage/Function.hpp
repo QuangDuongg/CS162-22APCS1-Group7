@@ -13,6 +13,7 @@
 
 //void inputPassword(Password* pass, istream& inPass, int& size);
 //void login(Password* pass, int size);
-
-
+void staffUpdate(Staff*& staff, Account*& account);
+void infoStaff(Staff*& staff);
+void infoAcc(Account*& account);
 #endif /* Function_hpp */
