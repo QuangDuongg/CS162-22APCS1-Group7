@@ -14,4 +14,5 @@ bool existClass(schoolyear* sy, string classname);
 void createClass(schoolyear*& sy);
 void saveClassToFile(schoolyear* sy);
 void readOldClassFile(schoolyear*& sy, istream& oldsy);
+void viewStudentinClass(schoolyear* sy);
 #endif /* Class_hpp */

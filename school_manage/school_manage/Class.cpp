@@ -247,3 +247,53 @@ void readOldClassFile(schoolyear*& sy, istream& oldsy){
         curyear = curyear->next;
     }
 }
+
+//cái read old class file là làm ngay từ đầu á nên là tới khi view sẽ có sẵn student ròi khum cần đọc file lại
+void viewStudentinClass(schoolyear* sy)
+{
+    schoolyear* viewsy = 0;
+    Class* viewclass = 0;
+    Student* viewstu= 0;
+    string classname;
+    cout << "Enter the class you want to view: ";
+    getline(cin, classname, '\n');
+          
+    bool exist = 0;
+    while (classname!="0")
+    {
+        viewsy = sy;
+        while (viewsy->next)
+        {
+            viewclass = viewsy->chead;
+            while (viewclass->classnext)
+            {
+                viewstu = viewclass->stuhead;
+                if (viewclass->classname == classname)
+                {
+                    exist = 1;
+                    while (viewstu->stunext)
+                    {
+                        cout << viewstu->no << ", ";
+                        cout << viewstu->stuID << ", ";
+                        cout << viewstu->stulname << " " << viewstu->stufname << ", ";
+                    
+                        if (viewstu->gender==1) cout << "Nam, ";
+                        else cout << "Nữ, ";
+                        
+                        cout << viewstu->stubirth.day << "/" << viewstu->stubirth.month << "/" << viewstu->stubirth.year << ", ";
+                        cout << viewstu->stupID << "\n";
+                        viewstu = viewstu->stunext;
+                    }
+                    break;
+                }
+                else viewclass = viewclass->classnext;
+            }
+            if (exist ==1) break;
+            else viewsy = viewsy->next;
+        }
+        if (exist==0) cout << "This class has not been added to our data.\n";
+        cout << "If you want to view the students of another class, please enter the name of that class.\nIf you do not want to continue, please enter 0 to stop.\n";
+        cin.ignore();
+        getline(cin, classname, '\n');
+    }
+}
