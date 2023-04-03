@@ -6,6 +6,114 @@
 //
 
 #include "Class.hpp"
+void update1StuClass(schoolyear*& sy)
+{//sy o day la linked list
+    string classname = "";
+    cout << "Which class you want to change?";
+    getline(cin, classname, '\n');
+    
+    while (classname != "0"){
+        schoolyear* tmpsy = sy;
+        Class* tmpclass =0;
+        bool check = 0;
+        while (tmpsy->next)
+        {
+            tmpclass = tmpsy->chead;
+            while (tmpclass->classnext)
+            {
+                if (tmpclass->classname==classname) {
+                    check = 1;
+                    break;
+                }
+                else tmpclass = tmpclass->classnext;
+            }
+            if (check==1) break;
+            else tmpsy = tmpsy->next;
+        }
+        
+        int no;
+        cout << "Input student No. you want to change: ";
+        cin >> no;
+        while (no!=0)
+        {
+            Student* curstudent = tmpclass->stuhead;
+            for (int i=1; i<no; ++i)
+                curstudent = curstudent->stunext;
+            curstudent->no = no;
+            cout << "Student ID: ";
+            getline(cin,curstudent->stuID,'\n');
+            
+            cout << "Student's last and middle name: ";
+            getline(cin,curstudent->stulname,'\n');
+            
+            cout << "Student's first name: ";
+            getline(cin,curstudent->stufname,'\n');
+            
+            string gender = "";
+            cout << "Student gender: ";
+            getline(cin, gender, '\n');
+            if (gender=="Nam" or gender=="1") curstudent->gender = 1;
+            else curstudent->gender = 0;
+            
+            cout << "Student birth day, month and year respectively: ";
+            cin >> curstudent->stubirth.day >> curstudent->stubirth.month >> curstudent->stubirth.year;
+            
+            cout << "Student's social personal ID: ";
+            getline(cin, curstudent->stuID, '\n');
+            
+            cout << "Input student No. you want to change (0-stop): ";
+            cin >> no;
+        }
+        ofstream fout;
+        fout.open("..main/Data/SchoolYear/"+tmpsy->scyear+"/class/"+tmpclass->classname+".csv");
+        if (fout.is_open()){
+            fout << tmpclass->classname << endl;
+            Student* curstudent = tmpclass->stuhead;
+            while (curstudent->stunext)
+            {
+                fout << curstudent->no << ',' << curstudent->stuID << ',' << curstudent->stulname << ',' << curstudent->stufname << ',';
+                if (curstudent->gender==1) fout << "Nam,";
+                else fout << "Nữ,";
+                fout << curstudent->stubirth.day << '/' << curstudent->stubirth.month << '/' << curstudent->stubirth.year << ',';
+                fout << curstudent->stupID;
+                curstudent = curstudent->stunext;
+            }}
+        else cout << "Cant open file " << "..main/Data/SchoolYear/"+tmpsy->scyear+"/class/"+tmpclass->classname+".csv" << endl;
+        fout.close();
+        cout << "Which class you want to change? (0-stop) ";
+        getline(cin, classname, '\n');
+    }
+    
+}
+int checkDigit(string data)
+{ // 2 là vừa chữ vừa số, 0 là toàn chữ, 1 là toàn số
+    long n = data.length();
+    int letter = 0, number = 0;
+    for (int i=0; i<n; ++i)
+    {
+        if (isdigit(char(data[i]))==1) ++number;
+        else ++letter;
+    }
+    if (number == n) return 1;
+    if (letter == n) return 0;
+    return 2;
+}
+bool existDataStuCourseClass(istream& file, string input, int linenum) //input la cai stuid a nha
+{
+    string line = "";
+    for (int i=1; i<linenum; ++i)
+    {
+        getline(file, line);
+        stringstream data(line);
+        string throwaway = "";
+        getline(data, throwaway, ',');
+        string id = "";
+        getline(data, id, ',');
+        if (id == input) return 1;
+        line = "";
+    }
+    return 0;
+}
 bool existClass(schoolyear* sy, string classname)
 {
     while (sy->next)
@@ -71,36 +179,85 @@ void createClass(schoolyear*& sy){
         if(student.is_open())
         {
             string line = "";
+            int countline = 1;
             while (getline(student, line))
             {
-                stringstream stuinfo(line);
-                string tempno;
-                getline(stuinfo, tempno, ',');
-                curstudent->no = stoi(tempno);
-                
-                getline(stuinfo, curstudent->stuID,',');
-                getline(stuinfo, curstudent->stulname, ',');
-                getline(stuinfo, curstudent->stufname, ',');
-                
-                string gender;
-                getline(stuinfo, gender, ',');
-                if (gender=="Nam") curstudent->gender = 1;
-                if (gender=="Nữ") curstudent->gender = 0;
-                
-                string day;
-                getline(stuinfo, day, '/');
-                curstudent->stubirth.day = stoi(day);
-                
-                string month;
-                getline(stuinfo, month, '/');
-                curstudent->stubirth.month = stoi(month);
-                
-                string year;
-                getline(stuinfo, year, ',');
-                curstudent->stubirth.year = stoi(year);
-                
-                getline(stuinfo, curstudent->stupID, '\r');
+                if (existDataStuCourseClass(student, line, countline)==0){
+                    stringstream stuinfo(line);
+                    string tempno;
+                    getline(stuinfo, tempno, ',');
+                    if (checkDigit(tempno)==1)
+                        curstudent->no = stoi(tempno);
+                    else {
+                        curstudent->no = 0;
+                        cout << "Student no of line " << countline << " is not valid.\n";
+                        
+                    }
+                    
+                    getline(stuinfo, curstudent->stuID,',');
+                    if (checkDigit(curstudent->stuID)!=1){
+                        curstudent->stuID = "";
+                        cout << "Student ID of line " << countline << "is not valid.\n";
+                    }
+                    
+                    getline(stuinfo, curstudent->stulname, ',');
+                    if (checkDigit(curstudent->stulname)!=0)
+                    {
+                        curstudent->stulname = "";
+                        cout << "Student's last name of line " << countline << "is not valid.\n";
+                    }
+                    
+                    getline(stuinfo, curstudent->stufname, ',');
+                    if (checkDigit(curstudent->stufname)!=0)
+                    {
+                        curstudent->stufname = "";
+                        cout << "Student's first name of line " << countline << "is not valid.\n";
+                    }
+                    
+                    string gender;
+                    getline(stuinfo, gender, ',');
+                    
+                    if (gender=="Nam" or gender =="1") curstudent->gender = 1;
+                    else if (gender=="Nữ" or gender=="0") curstudent->gender = 0;
+                    else {
+                        curstudent->gender = 0;
+                        cout << "Student gender name of line " << countline << "is not valid.\n";
+                    }
+                    
+                    string day;
+                    getline(stuinfo, day, '/');
+                    if (stoi(day))
+                        curstudent->stubirth.day = stoi(day);
+                    else{
+                        curstudent->stubirth.day = 0;
+                        cout << "Student birth day of line " << countline << "is not valid.\n";
+                    }
+                    
+                    string month;
+                    getline(stuinfo, month, '/');
+                    if (stoi(month)) curstudent->stubirth.month = stoi(month);
+                    else{
+                        curstudent->stubirth.month = 0;
+                        cout << "Student birth month of line " << countline << "is not valid.\n";
+                    }
+                    
+                    string year;
+                    getline(stuinfo, year, ',');
+                    if (stoi(year)) curstudent->stubirth.year = stoi(year);
+                    else {
+                        curstudent->stubirth.year = 0;
+                        cout << "Student birth year of line " << countline << "is not valid.\n";
+                    }
+                    
+                    getline(stuinfo, curstudent->stupID, '\r');
+                    if (checkDigit(curstudent->stupID)!=1) {
+                        curstudent->stupID = "";
+                        cout << "Student social ID of line " << countline << "is not valid.\n";
+                    }
+                }
+                else cout << "This data of line " << countline << "is repeated.\n";
                 line = "";
+                ++countline;
                 curstudent->stunext = new Student;
                 curstudent = curstudent->stunext;
                 curstudent->stunext = nullptr;
@@ -115,7 +272,7 @@ void createClass(schoolyear*& sy){
 }
 
 void saveClassToFile(schoolyear* sy){
-   
+    
     Class* curclass = sy->chead;
     while (curclass->classnext)
     {
@@ -231,7 +388,7 @@ void readOldClassFile(schoolyear*& sy, istream& oldsy){
                         curstudent = curstudent->stunext;
                         curstudent->stunext = nullptr;
                     }
-                           
+                    
                     subline = "";
                     curclass->classnext = new Class;
                     curclass = curclass->classnext;
@@ -257,7 +414,7 @@ void viewStudentinClass(schoolyear* sy)
     string classname;
     cout << "Enter the class you want to view: ";
     getline(cin, classname, '\n');
-          
+    
     bool exist = 0;
     while (classname!="0")
     {
@@ -276,7 +433,7 @@ void viewStudentinClass(schoolyear* sy)
                         cout << viewstu->no << ", ";
                         cout << viewstu->stuID << ", ";
                         cout << viewstu->stulname << " " << viewstu->stufname << ", ";
-                    
+                        
                         if (viewstu->gender==1) cout << "Nam, ";
                         else cout << "Nữ, ";
                         
