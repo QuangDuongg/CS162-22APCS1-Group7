@@ -24,6 +24,7 @@ int staff1menu(){
 }//menu sau login
 
 int menuSchoolYear(){
+    int choice;
     cout << "1. Create school year.\n2.View school year\n3.Exit.\n";
     cout << "Input a number according to what you want to do among the above: ";
     cin >> choice;
@@ -46,9 +47,10 @@ int menuViewSY(string& filename){
     getline(cin, year, '\n');
     filename = year+"txt";
     
-    cout << "1.View classes.\n2.View semesters.\n;
+    cout << "1.View classes.\n2.View semesters.\n";
     
     cout << "Input a number according to what you want to do among the above: ";
+    int choice;
     cin >> choice;
     return choice;
 }

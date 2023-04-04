@@ -6,6 +6,7 @@
 //
 
 #include "Class.hpp"
+
 bool existClass(schoolyear* sy, string classname)
 {
     while (sy->next)

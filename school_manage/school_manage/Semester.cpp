@@ -133,12 +133,12 @@ void createSemester(schoolyear*& sy){
             semester << nowsem->schyear << ',';
             nowsem->semindex = index;
             
-//            string address = "data/schoolyear/" + nowsem->schyear + "/" + to_string(nowsem->semindex);
-//                cout << address << '\n';
-//                if(mkdir(address.c_str()) == -1)
-//                    cerr << "Error : " << strerror(errno) << '\n';
-//                else
-//                    cout << "......  Created!" << '\n';
+        //    string address = "data/schoolyear/" + nowsem->schyear + "/" + to_string(nowsem->semindex);
+        //        cout << address << '\n';
+        //        if(mkdir(address.c_str()) == -1)
+        //            cerr << "Error : " << strerror(errno) << '\n';
+        //        else
+        //            cout << "Semester Created!" << '\n';
 
             cout << "The new semester is semester " << nowsem->semindex << endl;
             semester << nowsem->semindex << ',';
