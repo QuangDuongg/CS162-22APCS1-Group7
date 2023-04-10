@@ -163,6 +163,7 @@ void inputPassword(Account*& pass)
         curAcc = curAcc->next;
         curAcc->next=nullptr;
     }
+    inPass.close();
 }
 
 int login(Account* pass, string username, string password)
