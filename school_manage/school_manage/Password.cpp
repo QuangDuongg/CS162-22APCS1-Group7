@@ -134,54 +134,49 @@ void staffUpdate(Staff*& staff, Account*& account){
     }
 }// thêm hàm này vào sau khi người dùng đã nhập id và password. Nếu id = importinfo và password là 3002info thì chuyển sang hàm này. Còn nhập bình thường thì chuyển sang hàm password bình thường.
 
-//void inputPassword(Password* pass, istream& inPass, int& size)
-//{
-//    size =0;
-//    string line = "";
-//    getline(inPass, line);
-//    line = "";
-//    while (getline(inPass, line))
-//    {
-//        stringstream inputString(line);
-//        getline(inputString, pass[size].type, ',');
-//        getline(inputString, pass[size].name, ',');
-//        getline(inputString, pass[size].ID, ',');
-//        getline(inputString, pass[size].password,'\r');
-//        line = "";
-//        ++size;
-//    }
-//}
-//
-//void login(Password* pass, int size)
-//{
-//    string username, userpass;
-//    cout << "Enter your username: " << endl;
-//    cin.ignore();
-//    getline(cin, username, '\n');
-//    cout << "Enter your password: " << endl;
-//    getline(cin, userpass, '\n');
-//    bool existID=0;
-//    for (int i=0; i<size; ++i)
-//    {
-//        if (pass[i].ID==username)
-//        {
-//            if (pass[i].password==userpass)
-//            {
-//                cout << "Successfully login" << endl;
-//                return;
-//            }
-//            else
-//            {
-//                cout << "Wrong password, try again" << endl;
-//                return;
-//            }
-//        }
-//    }
-//    if (existID==0)
-//    {
-//        cout << "This username does not exist" << endl;
-//        return;
-//    }
-//}
-//
-//
+/*struct Account {
+    string type = "";
+    string name = "";
+    string ID = "";
+    string password = "";
+    Account* next;
+};*/
+
+void inputPassword(Account*& pass)
+{
+    Account* curAcc = pass;
+    ifstream inPass;
+    inPass.open("..main/Data/Account.txt");
+    
+    string line = "";
+    getline(inPass, line);
+    line = "";
+    while (getline(inPass, line))
+    {
+        stringstream inputString(line);
+        getline(inputString, curAcc->type, ',');
+        getline(inputString, curAcc->name, ',');
+        getline(inputString, curAcc->ID, ',');
+        getline(inputString, curAcc->password,'\r');
+        line = "";
+        curAcc->next = new Account;
+        curAcc = curAcc->next;
+        curAcc->next=nullptr;
+    }
+}
+
+int login(Account* pass, string username, string password)
+{
+    while (pass->next)
+    {
+        if (pass->ID == username)
+        {
+            if (pass->password == password) return 1;
+            else return -1;
+        }
+        pass = pass->next;
+    }
+    return 0;
+}
+
+

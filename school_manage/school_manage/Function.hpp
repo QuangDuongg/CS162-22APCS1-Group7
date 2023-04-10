@@ -16,4 +16,6 @@
 void staffUpdate(Staff*& staff, Account*& account);
 void infoStaff(Staff*& staff);
 void infoAcc(Account*& account);
+void inputPassword(Account*& pass);
+int login(Account* pass, string username, string password);
 #endif /* Function_hpp */
