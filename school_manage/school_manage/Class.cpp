@@ -6,6 +6,7 @@
 //
 
 #include "Class.hpp"
+
 void update1StuClass(schoolyear*& sy)
 {//sy o day la linked list
     string classname = "";
