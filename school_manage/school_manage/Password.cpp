@@ -172,7 +172,13 @@ int login(Account* pass, string username, string password)
     {
         if (pass->ID == username)
         {
-            if (pass->password == password) return 1;
+            if (pass->password == password)
+            {
+                if (pass->type == "staff")
+                    return 1;
+                if (pass->type == "stu")
+                    return 2;
+            }
             else return -1;
         }
         pass = pass->next;
