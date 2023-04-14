@@ -288,7 +288,7 @@ void saveClassToFile(schoolyear* sy){
             if (curstudent->gender==1) fout << "Nam,";
             else fout << "Nữ,";
             fout << curstudent->stubirth.day << '/' << curstudent->stubirth.month << '/' << curstudent->stubirth.year << ',';
-            fout << curstudent->stupID;
+            fout << curstudent->stupID << "\n";
             curstudent = curstudent->stunext;
         }
         fout.close();
