@@ -37,13 +37,21 @@ void update1StuClass(schoolyear*& sy)
         cin >> no;
         while (no!=0)
         {
+            ifstream fread;
+            fread.open("..main/Data/SchoolYear/"+tmpsy->scyear+"/class/"+tmpclass->classname+".csv");
+            if (!fread.is_open()){
+                cout << "Error opening file\n";
+                break;
+            }
             Student* curstudent = tmpclass->stuhead;
             for (int i=1; i<no; ++i)
                 curstudent = curstudent->stunext;
-            curstudent->no = no;
+            string stuid;
             cout << "Student ID: ";
-            getline(cin,curstudent->stuID,'\n');
+            getline(cin,stuid,'\n');
             
+            curstudent->no = no;
+            curstudent->stuID = stuid;
             cout << "Student's last and middle name: ";
             getline(cin,curstudent->stulname,'\n');
             
@@ -61,10 +69,9 @@ void update1StuClass(schoolyear*& sy)
             
             cout << "Student's social personal ID: ";
             getline(cin, curstudent->stuID, '\n');
-            
-            cout << "Input student No. you want to change (0-stop): ";
-            cin >> no;
-        }
+        cout << "Input student No. you want to change (0-stop): ";
+        cin >> no;
+    }
         ofstream fout;
         fout.open("..main/Data/SchoolYear/"+tmpsy->scyear+"/class/"+tmpclass->classname+".csv");
         if (fout.is_open()){
@@ -99,19 +106,18 @@ int checkDigit(string data)
     if (letter == n) return 0;
     return 2;
 }
-bool existDataStuCourseClass(istream& file, string input, int linenum) //input la cai stuid a nha
+bool existDataStuCourseClass(istream& file, string id, int countline) //input la cai stuid a nha
 {
     string line = "";
-    for (int i=1; i<linenum; ++i)
+    for (int i=1; i<countline; ++i)
     {
         getline(file, line);
-        stringstream data(line);
-        string throwaway = "";
-        getline(data, throwaway, ',');
-        string id = "";
-        getline(data, id, ',');
-        if (id == input) return 1;
-        line = "";
+        stringstream student(line);
+        string throwaway;
+        getline(student, throwaway, ',');
+        string stuid;
+        getline(student, stuid, ',');
+        if (stuid == id) return 1;
     }
     return 0;
 }

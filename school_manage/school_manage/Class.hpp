@@ -15,7 +15,7 @@ void createClass(schoolyear*& sy);
 void saveClassToFile(schoolyear* sy);
 void readOldClassFile(schoolyear*& sy, istream& oldsy);
 void viewStudentinClass(schoolyear* sy);
-bool existDataStuCourseClass(istream& file, string input, int linenum);
+bool existDataStuCourseClass(istream& file, string id, int countline);
 int checkDigit(string data);
 void updateStuClass(schoolyear*& sy);
 #endif /* Class_hpp */
