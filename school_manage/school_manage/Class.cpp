@@ -148,8 +148,10 @@ void createClass(schoolyear*& sy){
     classinp.open(classadress,ios::app);
     
     Class* curclass = tmpyear->chead;
-    while (curclass->classnext)
-        curclass = curclass->classnext;
+    if (!curclass) {
+        while (curclass->classnext)
+            curclass = curclass->classnext;}
+    else tmpyear->chead = new Class;
     latestClass = curclass;
     
     cout << "Input class names (0 to stop): " << endl;
