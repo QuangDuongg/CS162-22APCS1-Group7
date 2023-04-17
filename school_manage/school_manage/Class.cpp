@@ -138,7 +138,7 @@ bool existClass(schoolyear* sy, string classname)
 
 void createClass(schoolyear*& sy){
     ofstream classinp;
-    string classadress = "data/schoolyear/";
+    string classadress = "../Data/SchoolYear/";
     schoolyear* tmpyear = sy;
     Class* latestClass = 0;
     while (tmpyear->next)
@@ -160,21 +160,24 @@ void createClass(schoolyear*& sy){
     while (tmp != "0")
     {
         if (existClass(sy, tmp)==0){
-            if (classinp.is_open()){
-                classinp << tmp << "\n";}
-            else cout << "Cant open to save classes.\n";
-            curclass->classname = tmp;
-            curclass->classnext = new Class;
-            curclass = curclass->classnext;
-            curclass->classnext = nullptr;}
+            if (!classinp.is_open()){
+                cout << "Cant open to save classes.\n";
+            }
+            else{
+                classinp << tmp << "\n";
+                curclass->classname = tmp;
+                curclass->classnext = new Class;
+                curclass = curclass->classnext;
+                curclass->classnext = nullptr;}}
         else cout << "This class has been input before. Please input again.\n";
         getline(cin,tmp,'\n');
     }
     curclass = latestClass;
+    classinp.close();
     cout << endl;
     cout << "Please input the path to your the file containing information of students from each class respectively.\n";
-    classinp.close();
     
+    //read student file
     while (curclass->classnext)
     {
         cout << curclass->classname << " file address: ";
@@ -209,18 +212,18 @@ void createClass(schoolyear*& sy){
                         cout << "Student ID of line " << countline << "is not valid.\n";
                     }
                     
-                    getline(stuinfo, curstudent->stulname, ',');
-                    if (checkDigit(curstudent->stulname)!=0)
-                    {
-                        curstudent->stulname = "";
-                        cout << "Student's last name of line " << countline << "is not valid.\n";
-                    }
-                    
                     getline(stuinfo, curstudent->stufname, ',');
                     if (checkDigit(curstudent->stufname)!=0)
                     {
                         curstudent->stufname = "";
                         cout << "Student's first name of line " << countline << "is not valid.\n";
+                    }
+                    
+                    getline(stuinfo, curstudent->stulname, ',');
+                    if (checkDigit(curstudent->stulname)!=0)
+                    {
+                        curstudent->stulname = "";
+                        cout << "Student's last name of line " << countline << "is not valid.\n";
                     }
                     
                     string gender;
@@ -285,21 +288,26 @@ void saveClassToFile(schoolyear* sy){
     Class* curclass = sy->chead;
     while (curclass->classnext)
     {
-        string address = "data/schoolyear/"+ sy->scyear+"/class/"+curclass->classname+".csv";
+        string address = "../Data/SchoolYear/"+ sy->scyear+"/"+curclass->classname+".txt";
+        string detailfile = "../Data/StuOfSchool/StuOfSchool.txt";
+        
         ofstream fout;
         fout.open(address);
-        fout << curclass->classname << endl;
+        ofstream detailFile(detailfile,ios::app);
+        
         Student* curstudent = curclass->stuhead;
         while (curstudent->stunext)
         {
-            fout << curstudent->no << ',' << curstudent->stuID << ',' << curstudent->stulname << ',' << curstudent->stufname << ',';
-            if (curstudent->gender==1) fout << "Nam,";
-            else fout << "Nữ,";
-            fout << curstudent->stubirth.day << '/' << curstudent->stubirth.month << '/' << curstudent->stubirth.year << ',';
+            fout << curstudent->stuID << "\n";
+            detailFile << curstudent->no << ',' << curstudent->stuID << ',' << curstudent->stufname << ',' << curstudent->stulname << ',';
+            if (curstudent->gender==1) detailFile << "Nam,";
+            else detailFile << "Nữ,";
+            detailFile << curstudent->stubirth.day << '/' << curstudent->stubirth.month << '/' << curstudent->stubirth.year << ',';
             fout << curstudent->stupID << "\n";
             curstudent = curstudent->stunext;
         }
         fout.close();
+        detailFile.close();
         curclass = curclass->classnext;
     }
 }
